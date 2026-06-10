@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyOS - Your Personal Study Operating System. Manage tasks, goals, notes, and focus sessions in one platform.">
+  <meta name="theme-color" content="#6366f1">
+  <title>StudyOS - Your Personal Study Operating System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-theme="light">
+  <!-- NAVIGATION -->
+  <nav class="navbar" style="position: fixed; top: 0; left: 0; right: 0; width: 100%; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); z-index: 999; margin-left: 0; height: auto; padding: var(--spacing-lg) var(--spacing-xl);">
+    <div class="container flex-between">
+      <div class="flex" style="gap: var(--spacing-md); align-items: center;">
+        <div class="sidebar-logo" style="margin: 0;">S</div>
+        <span style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">StudyOS</span>
+      </div>
+      
+      <div style="display: flex; gap: var(--spacing-xl); align-items: center;">
+        <div style="display: none;" class="navbar-links">
+          <a href="#features" style="color: var(--text-primary); text-decoration: none; font-weight: 500;">Features</a>
+          <a href="#benefits" style="color: var(--text-primary); text-decoration: none; font-weight: 500; margin-left: var(--spacing-lg);">Benefits</a>
+          <a href="#testimonials" style="color: var(--text-primary); text-decoration: none; font-weight: 500; margin-left: var(--spacing-lg);">Testimonials</a>
+          <a href="#faq" style="color: var(--text-primary); text-decoration: none; font-weight: 500; margin-left: var(--spacing-lg);">FAQ</a>
+        </div>
+        
+        <div class="flex" style="gap: var(--spacing-md);">
+          <button class="btn btn-outline btn-sm" data-theme-btn="light">☀️</button>
+          <button class="btn btn-outline btn-sm" data-theme-btn="dark">🌙</button>
+          <a href="dashboard.html" class="btn btn-primary btn-sm">Launch App →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main style="margin-top: 80px;">
+    <!-- HERO SECTION -->
+    <section class="hero" style="padding: var(--spacing-3xl) var(--spacing-xl); text-align: center; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);">
+      <div class="container">
+        <h1 style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Your Personal Study Operating System</h1>
+        <p style="font-size: 1.3rem; color: var(--text-secondary); margin-bottom: var(--spacing-2xl); max-width: 700px; margin-left: auto; margin-right: auto;">Organize, plan, track, and optimize your study journey. StudyOS combines task management, goal tracking, focus sessions, and analytics into one powerful platform.</p>
+        <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
+          <a href="dashboard.html" class="btn btn-primary btn-lg">Start Studying Now →</a>
+          <button class="btn btn-outline btn-lg" onclick="document.querySelector('.features').scrollIntoView({ behavior: 'smooth' })">Learn More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SHOWCASE -->
+    <section class="features" id="features" style="padding: var(--spacing-3xl) var(--spacing-xl);">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">Powerful Features</h2>
+        <div class="grid-4" style="margin-bottom: var(--spacing-2xl);">
+          <div class="card">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">✓</div>
+            <h3 style="color: var(--text-primary);">Task Manager</h3>
+            <p>Organize tasks by priority, categories, and due dates. Never miss a deadline.</p>
+          </div>
+          <div class="card">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">🎯</div>
+            <h3 style="color: var(--text-primary);">Goal Tracker</h3>
+            <p>Set and track academic, skill, and placement goals with progress indicators.</p>
+          </div>
+          <div class="card">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">📝</div>
+            <h3 style="color: var(--text-primary);">Notes Vault</h3>
+            <p>Create, organize, and search notes with categories and favorites.</p>
+          </div>
+          <div class="card">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">🍅</div>
+            <h3 style="color: var(--text-primary);">Pomodoro Timer</h3>
+            <p>Focus sessions, break tracking, and productivity analytics built-in.</p>
+          </div>
+          <div class="card">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">📊</div>
+            <h3 style="color: var(--text-primary);">Analytics</h3>
+            <p>Track study hours, completion rates, and productivity trends.</p>
+          </div>
+          <div class="card">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">📆</div>
+            <h3 style="color: var(--text-primary);">Smart Calendar</h3>
+            <p>Manage your study schedule with deadline tracking and reminders.</p>
+          </div>
+          <div class="card">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">🏆</div>
+            <h3 style="color: var(--text-primary);">Gamification</h3>
+            <p>Earn achievements, XP points, and maintain your study streak.</p>
+          </div>
+          <div class="card">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">⚡</div>
+            <h3 style="color: var(--text-primary);">Productivity Score</h3>
+            <p>Real-time productivity metrics and personalized improvement suggestions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATISTICS SECTION -->
+    <section style="padding: var(--spacing-3xl) var(--spacing-xl); background: var(--bg-secondary);">
+      <div class="container">
+        <div class="grid-4">
+          <div class="stat-card">
+            <div class="stat-card-value" style="color: var(--primary-color);">100%</div>
+            <div class="stat-card-label">Offline Functionality</div>
+            <p style="color: var(--text-tertiary); font-size: 0.9rem;">Works completely offline with LocalStorage sync</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-value" style="color: var(--accent-green);">0 APIs</div>
+            <div class="stat-card-label">No Backend Required</div>
+            <p style="color: var(--text-tertiary); font-size: 0.9rem;">Pure frontend application - no server needed</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-value" style="color: var(--accent-blue);">12</div>
+            <div class="stat-card-label">Powerful Features</div>
+            <p style="color: var(--text-tertiary); font-size: 0.9rem;">Comprehensive suite of study tools</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-value" style="color: var(--accent-yellow);">∞</div>
+            <div class="stat-card-label">Free Forever</div>
+            <p style="color: var(--text-tertiary); font-size: 0.9rem;">No subscriptions, no hidden costs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS SECTION -->
+    <section id="benefits" style="padding: var(--spacing-3xl) var(--spacing-xl);">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">Why Choose StudyOS?</h2>
+        <div class="grid-2">
+          <div>
+            <div class="card">
+              <h3>📱 Responsive Design</h3>
+              <p>Perfect on mobile, tablet, and desktop. Study anywhere, anytime.</p>
+            </div>
+            <div class="card">
+              <h3>🎨 Dark & Light Mode</h3>
+              <p>Choose your preferred theme. Easy on the eyes during late study sessions.</p>
+            </div>
+            <div class="card">
+              <h3>💾 Automatic Sync</h3>
+              <p>Your data is automatically saved and synced across all sessions.</p>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <h3>🔒 Your Data, Your Control</h3>
+              <p>All data stored locally. Export and backup whenever you need.</p>
+            </div>
+            <div class="card">
+              <h3>⚡ Lightning Fast</h3>
+              <p>Instant load times. No waiting for servers or APIs.</p>
+            </div>
+            <div class="card">
+              <h3>🎯 Goal Oriented</h3>
+              <p>Stay focused on your goals with real-time progress tracking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" style="padding: var(--spacing-3xl) var(--spacing-xl); background: var(--bg-secondary);">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">Student Testimonials</h2>
+        <div class="grid-3">
+          <div class="card">
+            <div style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+              <div class="user-avatar" style="width: 50px; height: 50px;">AJ</div>
+              <div>
+                <strong style="color: var(--text-primary);">Arjun Sharma</strong>
+                <p style="margin: 0; color: var(--text-tertiary); font-size: 0.9rem;">JEE Aspirant</p>
+              </div>
+            </div>
+            <p>"StudyOS completely transformed my study routine. I've gone from chaotic note-taking to a well-organized system. The Pomodoro timer keeps me focused!"</p>
+          </div>
+          <div class="card">
+            <div style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+              <div class="user-avatar" style="width: 50px; height: 50px;">MP</div>
+              <div>
+                <strong style="color: var(--text-primary);">Meera Patel</strong>
+                <p style="margin: 0; color: var(--text-tertiary); font-size: 0.9rem;">College Senior</p>
+              </div>
+            </div>
+            <p>"The analytics dashboard helped me understand my productivity patterns. I increased my study hours by 40% within a month!"</p>
+          </div>
+          <div class="card">
+            <div style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+              <div class="user-avatar" style="width: 50px; height: 50px;">RK</div>
+              <div>
+                <strong style="color: var(--text-primary);">Rohan Kumar</strong>
+                <p style="margin: 0; color: var(--text-tertiary); font-size: 0.9rem;">Placement Aspirant</p>
+              </div>
+            </div>
+            <p>"The goal tracking system kept me motivated throughout my placement preparation. I finally cracked my dream company!"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" style="padding: var(--spacing-3xl) var(--spacing-xl);">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">Frequently Asked Questions</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+          <div class="card" style="margin-bottom: var(--spacing-lg);">
+            <h3 style="cursor: pointer; color: var(--primary-color);">Is StudyOS completely free?</h3>
+            <p>Yes! StudyOS is completely free and will always be free. No subscriptions, no hidden costs, no premium features.</p>
+          </div>
+          <div class="card" style="margin-bottom: var(--spacing-lg);">
+            <h3 style="cursor: pointer; color: var(--primary-color);">Do I need to create an account?</h3>
+            <p>No account needed! StudyOS works entirely on your device using browser storage. Start using it immediately.</p>
+          </div>
+          <div class="card" style="margin-bottom: var(--spacing-lg);">
+            <h3 style="cursor: pointer; color: var(--primary-color);">Will my data be lost?</h3>
+            <p>Your data is safely stored in your browser. You can export it anytime and import it later. It won't be lost unless you clear your browser storage.</p>
+          </div>
+          <div class="card" style="margin-bottom: var(--spacing-lg);">
+            <h3 style="cursor: pointer; color: var(--primary-color);">Does it work offline?</h3>
+            <p>Absolutely! StudyOS works 100% offline. Use it anywhere without internet connection.</p>
+          </div>
+          <div class="card">
+            <h3 style="cursor: pointer; color: var(--primary-color);">Can I use it on mobile?</h3>
+            <p>Yes! StudyOS is fully responsive and works perfectly on smartphones, tablets, and desktops.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section style="padding: var(--spacing-3xl) var(--spacing-xl); background: var(--primary-gradient); color: white; text-align: center;">
+      <div class="container">
+        <h2 style="color: white; font-size: 2.5rem; margin-bottom: var(--spacing-lg);">Ready to Transform Your Study Routine?</h2>
+        <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; margin-bottom: var(--spacing-2xl);">Join thousands of students already using StudyOS to achieve their academic and career goals.</p>
+        <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
+          <a href="dashboard.html" class="btn btn-lg" style="background: white; color: var(--primary-color); cursor: pointer;">Get Started Now →</a>
+          <a href="about.html" class="btn btn-outline btn-lg" style="border-color: white; color: white;">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding: var(--spacing-2xl) var(--spacing-xl); background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+      <div class="container">
+        <div class="grid-4" style="margin-bottom: var(--spacing-2xl);">
+          <div>
+            <h4 style="margin-bottom: var(--spacing-md);">StudyOS</h4>
+            <p style="color: var(--text-secondary);">Your Personal Study Operating System</p>
+          </div>
+          <div>
+            <h4 style="margin-bottom: var(--spacing-md);">Features</h4>
+            <ul style="list-style: none;">
+              <li><a href="dashboard.html" style="color: var(--text-secondary); text-decoration: none;">Dashboard</a></li>
+              <li><a href="tasks.html" style="color: var(--text-secondary); text-decoration: none;">Tasks</a></li>
+              <li><a href="goals.html" style="color: var(--text-secondary); text-decoration: none;">Goals</a></li>
+              <li><a href="pomodoro.html" style="color: var(--text-secondary); text-decoration: none;">Pomodoro</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin-bottom: var(--spacing-md);">Resources</h4>
+            <ul style="list-style: none;">
+              <li><a href="about.html" style="color: var(--text-secondary); text-decoration: none;">About</a></li>
+              <li><a href="settings.html" style="color: var(--text-secondary); text-decoration: none;">Settings</a></li>
+              <li><a href="contact.html" style="color: var(--text-secondary); text-decoration: none;">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin-bottom: var(--spacing-md);">Connect</h4>
+            <p style="color: var(--text-secondary); margin: var(--spacing-md) 0 0 0;">Made with ❤️ for students</p>
+          </div>
+        </div>
+        <div style="border-top: 1px solid var(--border-color); padding-top: var(--spacing-lg); text-align: center; color: var(--text-tertiary);">
+          <p>&copy; 2024 StudyOS. All rights reserved. Built for students, by students.</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/productivity-score.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/validation.js"></script>
+</body>
+</html>

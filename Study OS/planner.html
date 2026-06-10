@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Planner - StudyOS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-theme="light">
+  <aside class="sidebar">
+    <div class="sidebar-header"><div class="sidebar-logo">S</div><span class="sidebar-brand">StudyOS</span></div>
+    <nav><ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="dashboard.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">📊</span> Dashboard</a></li>
+      <li class="sidebar-nav-item"><a href="planner.html" class="sidebar-nav-link active"><span class="sidebar-nav-icon">📅</span> Planner</a></li>
+      <li class="sidebar-nav-item"><a href="tasks.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">✓</span> Tasks</a></li>
+      <li class="sidebar-nav-item"><a href="goals.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">🎯</span> Goals</a></li>
+      <li class="sidebar-nav-item"><a href="pomodoro.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">🍅</span> Pomodoro</a></li>
+    </ul></nav>
+  </aside>
+
+  <nav class="navbar">
+    <h2 class="navbar-brand">Study Planner</h2>
+    <div class="navbar-actions">
+      <button class="btn btn-icon" data-theme-btn="light">☀️</button>
+      <button class="btn btn-icon" data-theme-btn="dark">🌙</button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="card" style="margin-bottom: var(--spacing-xl);">
+      <h3>Add Subject</h3>
+      <form id="subject-form" style="display: grid; gap: var(--spacing-lg);">
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="subject-name">Subject Name *</label>
+            <input type="text" id="subject-name" required placeholder="E.g., Mathematics">
+          </div>
+          <div class="form-group">
+            <label for="subject-priority">Priority</label>
+            <select id="subject-priority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject-description">Topics to Cover</label>
+          <textarea id="subject-description" placeholder="List the topics you need to study..."></textarea>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="subject-hours">Weekly Hours</label>
+            <input type="number" id="subject-hours" value="5" min="1" max="50">
+          </div>
+          <div class="form-group">
+            <label for="subject-deadline">Deadline</label>
+            <input type="date" id="subject-deadline">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Subject</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>Study Schedule</h3>
+      <div id="schedule-list" style="display: grid; gap: var(--spacing-md);">
+        <p style="text-align: center; color: var(--text-secondary);">No subjects added yet</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: var(--spacing-xl);">
+      <h3>Weekly Plan</h3>
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--spacing-md);">
+        <div style="text-align: center;">
+          <h4>Monday</h4>
+          <input type="text" placeholder="Topics" style="width: 100%;">
+        </div>
+        <div style="text-align: center;">
+          <h4>Tuesday</h4>
+          <input type="text" placeholder="Topics" style="width: 100%;">
+        </div>
+        <div style="text-align: center;">
+          <h4>Wednesday</h4>
+          <input type="text" placeholder="Topics" style="width: 100%;">
+        </div>
+        <div style="text-align: center;">
+          <h4>Thursday</h4>
+          <input type="text" placeholder="Topics" style="width: 100%;">
+        </div>
+        <div style="text-align: center;">
+          <h4>Friday</h4>
+          <input type="text" placeholder="Topics" style="width: 100%;">
+        </div>
+        <div style="text-align: center;">
+          <h4>Saturday</h4>
+          <input type="text" placeholder="Topics" style="width: 100%;">
+        </div>
+        <div style="text-align: center;">
+          <h4>Sunday</h4>
+          <input type="text" placeholder="Topics" style="width: 100%;">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notifications.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('subject-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const subject = storage.addSubject({
+          name: document.getElementById('subject-name').value,
+          priority: document.getElementById('subject-priority').value,
+          description: document.getElementById('subject-description').value,
+          weeklyHours: parseInt(document.getElementById('subject-hours').value),
+          deadline: document.getElementById('subject-deadline').value
+        });
+        notifier.success('Subject added to your study plan!');
+        document.getElementById('subject-form').reset();
+        displaySchedule();
+      });
+      displaySchedule();
+    });
+
+    function displaySchedule() {
+      const subjects = storage.getSubjects();
+      const container = document.getElementById('schedule-list');
+      
+      if (subjects.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No subjects added yet</p>';
+        return;
+      }
+
+      container.innerHTML = subjects.map(s => `
+        <div class="card" style="padding: var(--spacing-lg);">
+          <div class="flex-between" style="margin-bottom: var(--spacing-lg);">
+            <div>
+              <h4>${s.name}</h4>
+              <p style="color: var(--text-secondary); margin: var(--spacing-sm) 0 0 0;">
+                ${s.weeklyHours}h/week ${s.deadline ? '• Due ' + app.formatDate(s.deadline) : ''}
+              </p>
+            </div>
+            <button class="btn btn-icon btn-sm" onclick="storage.deleteSubject(${s.id}); displaySchedule();">🗑️</button>
+          </div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">${s.description || 'No description'}</p>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

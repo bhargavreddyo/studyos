@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyOS Dashboard - Your personal study command center">
+  <meta name="theme-color" content="#6366f1">
+  <title>Dashboard - StudyOS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body data-theme="light">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">S</div>
+      <span class="sidebar-brand">StudyOS</span>
+    </div>
+    
+    <nav>
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-item">
+          <a href="dashboard.html" class="sidebar-nav-link active" data-icon="📊">
+            <span class="sidebar-nav-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="planner.html" class="sidebar-nav-link" data-icon="📅">
+            <span class="sidebar-nav-icon">📅</span>
+            <span>Study Planner</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="tasks.html" class="sidebar-nav-link" data-icon="✓">
+            <span class="sidebar-nav-icon">✓</span>
+            <span>Tasks</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="goals.html" class="sidebar-nav-link" data-icon="🎯">
+            <span class="sidebar-nav-icon">🎯</span>
+            <span>Goals</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="pomodoro.html" class="sidebar-nav-link" data-icon="🍅">
+            <span class="sidebar-nav-icon">🍅</span>
+            <span>Pomodoro</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="notes.html" class="sidebar-nav-link" data-icon="📝">
+            <span class="sidebar-nav-icon">📝</span>
+            <span>Notes</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="analytics.html" class="sidebar-nav-link" data-icon="📈">
+            <span class="sidebar-nav-icon">📈</span>
+            <span>Analytics</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="calendar.html" class="sidebar-nav-link" data-icon="🗓️">
+            <span class="sidebar-nav-icon">🗓️</span>
+            <span>Calendar</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="settings.html" class="sidebar-nav-link" data-icon="⚙️">
+            <span class="sidebar-nav-icon">⚙️</span>
+            <span>Settings</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="about.html" class="sidebar-nav-link" data-icon="ℹ️">
+            <span class="sidebar-nav-icon">ℹ️</span>
+            <span>About</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div style="flex: 1;">
+      <h2 class="navbar-brand" id="page-title">Dashboard</h2>
+    </div>
+    
+    <div class="navbar-actions">
+      <button class="btn btn-icon" data-theme-btn="light" title="Light Mode">☀️</button>
+      <button class="btn btn-icon" data-theme-btn="dark" title="Dark Mode">🌙</button>
+      
+      <div class="dropdown">
+        <button class="dropdown-trigger" title="User Menu">👤</button>
+        <div class="dropdown-menu">
+          <a href="settings.html" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="index.html" class="dropdown-item">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </navbar>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <span class="breadcrumb-item active">Dashboard</span>
+    </div>
+
+    <!-- WELCOME CARD -->
+    <div class="card card-gradient" style="margin-bottom: var(--spacing-xl);">
+      <div class="flex-between">
+        <div>
+          <h2 style="color: white; margin: 0;">Welcome back! 👋</h2>
+          <p style="color: rgba(255, 255, 255, 0.9); margin: var(--spacing-md) 0 0 0;">Let's make today productive</p>
+        </div>
+        <div style="font-size: 3rem;">📚</div>
+      </div>
+    </div>
+
+    <!-- KEY METRICS -->
+    <div class="section">
+      <h3 class="section-title">Today's Overview</h3>
+      <div class="grid-4">
+        <div class="stat-card">
+          <div class="stat-card-icon stat-card-icon-primary">📊</div>
+          <div class="stat-card-label">Productivity Score</div>
+          <div class="stat-card-value" id="productivity-score">85%</div>
+          <div class="stat-card-footer positive">↑ Up 12% from yesterday</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-icon stat-card-icon-success">⚡</div>
+          <div class="stat-card-label">Focus Hours</div>
+          <div class="stat-card-value" id="focus-hours">3.5h</div>
+          <div class="stat-card-footer">2 Pomodoro sessions</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-icon stat-card-icon-warning">✓</div>
+          <div class="stat-card-label">Tasks Completed</div>
+          <div class="stat-card-value" id="tasks-completed">8/12</div>
+          <div class="stat-card-footer">4 remaining today</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-icon stat-card-icon-danger">🔥</div>
+          <div class="stat-card-label">Current Streak</div>
+          <div class="stat-card-value" id="current-streak">7</div>
+          <div class="stat-card-footer positive">Keep it up!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAILY TARGET & PROGRESS -->
+    <div class="section">
+      <h3 class="section-title">Daily Study Target</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="flex-between" style="margin-bottom: var(--spacing-lg);">
+            <h4 style="margin: 0;">Study Time Goal</h4>
+            <span class="badge badge-primary">240 min</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: 65%;">65%</div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin: var(--spacing-md) 0 0 0;">156/240 minutes completed</p>
+        </div>
+
+        <div class="card">
+          <div class="flex-between" style="margin-bottom: var(--spacing-lg);">
+            <h4 style="margin: 0;">Study Breakdown</h4>
+            <span class="badge badge-success">On Track</span>
+          </div>
+          <div style="display: grid; gap: var(--spacing-md);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span>Focus Sessions</span>
+              <strong>2 / 5</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span>Subjects</span>
+              <strong>3 active</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span>Break Time</span>
+              <strong>45 min</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPCOMING DEADLINES -->
+    <div class="section">
+      <div class="flex-between" style="margin-bottom: var(--spacing-lg);">
+        <h3 class="section-title" style="margin: 0;">Upcoming Deadlines</h3>
+        <a href="tasks.html" class="btn btn-sm btn-outline">View All →</a>
+      </div>
+      <div id="upcoming-deadlines" style="display: grid; gap: var(--spacing-md);">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- PRODUCTIVITY INSIGHTS -->
+    <div class="section">
+      <h3 class="section-title">Productivity Insights</h3>
+      <div class="grid-2">
+        <div class="card">
+          <h4 style="margin-bottom: var(--spacing-lg);">📊 Key Insights</h4>
+          <div id="insights-container" style="display: grid; gap: var(--spacing-md);">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 style="margin-bottom: var(--spacing-lg);">💡 Suggestions</h4>
+          <div id="suggestions-container" style="display: grid; gap: var(--spacing-md);">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="section">
+      <h3 class="section-title">Quick Actions</h3>
+      <div class="grid-4">
+        <button class="card" onclick="window.location.href='tasks.html'" style="cursor: pointer; border: 2px dashed var(--primary-color); background: var(--primary-color); color: white; text-align: center; padding: var(--spacing-2xl); border-style: solid;">
+          <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">➕</div>
+          <div style="font-weight: 600;">Add Task</div>
+        </button>
+
+        <button class="card" onclick="window.location.href='goals.html'" style="cursor: pointer; border: 2px dashed var(--accent-blue); background: var(--bg-primary); color: var(--accent-blue); text-align: center; padding: var(--spacing-2xl);">
+          <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">🎯</div>
+          <div style="font-weight: 600;">Set Goal</div>
+        </button>
+
+        <button class="card" onclick="window.location.href='pomodoro.html'" style="cursor: pointer; border: 2px dashed var(--accent-green); background: var(--bg-primary); color: var(--accent-green); text-align: center; padding: var(--spacing-2xl);">
+          <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">🍅</div>
+          <div style="font-weight: 600;">Start Focus</div>
+        </button>
+
+        <button class="card" onclick="window.location.href='notes.html'" style="cursor: pointer; border: 2px dashed var(--accent-yellow); background: var(--bg-primary); color: var(--accent-yellow); text-align: center; padding: var(--spacing-2xl);">
+          <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">📝</div>
+          <div style="font-weight: 600;">New Note</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- RECENT ACTIVITY -->
+    <div class="section">
+      <div class="flex-between" style="margin-bottom: var(--spacing-lg);">
+        <h3 class="section-title" style="margin: 0;">Recent Activity</h3>
+        <a href="analytics.html" class="btn btn-sm btn-outline">View Analytics →</a>
+      </div>
+      <div id="recent-activity" class="card">
+        <div class="empty-state">
+          <div class="empty-state-icon">📭</div>
+          <div class="empty-state-title">No activity yet</div>
+          <div class="empty-state-text">Start adding tasks, goals, or notes to see your activity here</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDY STREAK INFO -->
+    <div class="section">
+      <h3 class="section-title">Weekly Summary</h3>
+      <div class="grid-3">
+        <div class="card">
+          <h4>📚 Total Study Time</h4>
+          <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color); margin: var(--spacing-lg) 0;">24.5h</div>
+          <p style="color: var(--text-secondary);">This week's total</p>
+        </div>
+
+        <div class="card">
+          <h4>✓ Tasks Completed</h4>
+          <div style="font-size: 2rem; font-weight: 700; color: var(--accent-green); margin: var(--spacing-lg) 0;">42</div>
+          <p style="color: var(--text-secondary);">Out of 58 tasks</p>
+        </div>
+
+        <div class="card">
+          <h4>🏆 Achievements</h4>
+          <div style="font-size: 2rem; font-weight: 700; color: var(--accent-blue); margin: var(--spacing-lg) 0;">8</div>
+          <p style="color: var(--text-secondary);">New badges earned</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/productivity-score.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

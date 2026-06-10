@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Focus - StudyOS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .timer-display {
+      font-size: 4rem;
+      font-weight: 700;
+      text-align: center;
+      margin: var(--spacing-2xl) 0;
+      font-family: 'Courier New', monospace;
+      color: var(--primary-color);
+    }
+    .timer-controls {
+      display: flex;
+      gap: var(--spacing-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <aside class="sidebar">
+    <div class="sidebar-header"><div class="sidebar-logo">S</div><span class="sidebar-brand">StudyOS</span></div>
+    <nav><ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="dashboard.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">📊</span> Dashboard</a></li>
+      <li class="sidebar-nav-item"><a href="tasks.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">✓</span> Tasks</a></li>
+      <li class="sidebar-nav-item"><a href="goals.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">🎯</span> Goals</a></li>
+      <li class="sidebar-nav-item"><a href="pomodoro.html" class="sidebar-nav-link active"><span class="sidebar-nav-icon">🍅</span> Pomodoro</a></li>
+      <li class="sidebar-nav-item"><a href="notes.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">📝</span> Notes</a></li>
+      <li class="sidebar-nav-item"><a href="analytics.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">📈</span> Analytics</a></li>
+      <li class="sidebar-nav-item"><a href="calendar.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">🗓️</span> Calendar</a></li>
+    </ul></nav>
+  </aside>
+
+  <nav class="navbar">
+    <h2 class="navbar-brand">Pomodoro Focus Room</h2>
+    <div class="navbar-actions">
+      <button class="btn btn-icon" data-theme-btn="light">☀️</button>
+      <button class="btn btn-icon" data-theme-btn="dark">🌙</button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="card card-gradient" style="text-align: center; margin-bottom: var(--spacing-xl);">
+      <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🍅</div>
+      <h2 style="color: white;">Focus Session</h2>
+      <p style="color: rgba(255,255,255,0.9);">Stay focused and be productive</p>
+    </div>
+
+    <div class="card" style="max-width: 600px; margin: 0 auto;">
+      <div class="timer-display" id="timer-display">25:00</div>
+      
+      <div style="margin-bottom: var(--spacing-xl);">
+        <div class="grid-2" style="margin-bottom: var(--spacing-lg);">
+          <div class="form-group">
+            <label for="focus-duration">Focus Duration (minutes)</label>
+            <input type="number" id="focus-duration" value="25" min="1" max="120">
+          </div>
+          <div class="form-group">
+            <label for="break-duration">Break Duration (minutes)</label>
+            <input type="number" id="break-duration" value="5" min="1" max="30">
+          </div>
+        </div>
+      </div>
+
+      <div class="timer-controls">
+        <button class="btn btn-primary btn-lg" id="start-btn" onclick="startTimer()">▶ Start</button>
+        <button class="btn btn-secondary btn-lg" id="pause-btn" onclick="pauseTimer()" style="display: none;">⏸ Pause</button>
+        <button class="btn btn-outline btn-lg" onclick="resetTimer()">🔄 Reset</button>
+      </div>
+
+      <div style="margin-top: var(--spacing-2xl); text-align: center;">
+        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Today's Sessions</p>
+        <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color);" id="session-count">0</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: var(--spacing-xl);">
+      <h3>Session History</h3>
+      <div id="session-history" style="display: grid; gap: var(--spacing-md);">
+        <p style="text-align: center; color: var(--text-secondary);">No sessions today yet</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/pomodoro.js"></script>
+</body>
+</html>

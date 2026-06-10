@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes - StudyOS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-theme="light">
+  <aside class="sidebar">
+    <div class="sidebar-header"><div class="sidebar-logo">S</div><span class="sidebar-brand">StudyOS</span></div>
+    <nav><ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="dashboard.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">📊</span> Dashboard</a></li>
+      <li class="sidebar-nav-item"><a href="tasks.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">✓</span> Tasks</a></li>
+      <li class="sidebar-nav-item"><a href="goals.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">🎯</span> Goals</a></li>
+      <li class="sidebar-nav-item"><a href="pomodoro.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">🍅</span> Pomodoro</a></li>
+      <li class="sidebar-nav-item"><a href="notes.html" class="sidebar-nav-link active"><span class="sidebar-nav-icon">📝</span> Notes</a></li>
+      <li class="sidebar-nav-item"><a href="analytics.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">📈</span> Analytics</a></li>
+      <li class="sidebar-nav-item"><a href="calendar.html" class="sidebar-nav-link"><span class="sidebar-nav-icon">🗓️</span> Calendar</a></li>
+    </ul></nav>
+  </aside>
+
+  <nav class="navbar">
+    <h2 class="navbar-brand">Notes Vault</h2>
+    <div class="navbar-actions">
+      <button class="btn btn-icon" data-theme-btn="light">☀️</button>
+      <button class="btn btn-icon" data-theme-btn="dark">🌙</button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="card" style="margin-bottom: var(--spacing-xl);">
+      <h3>Create Note</h3>
+      <form id="note-form" style="display: grid; gap: var(--spacing-lg);">
+        <div class="form-group">
+          <label for="note-title">Title *</label>
+          <input type="text" id="note-title" required placeholder="Note title">
+        </div>
+        <div class="form-group">
+          <label for="note-category">Category</label>
+          <select id="note-category">
+            <option>Math</option>
+            <option>Science</option>
+            <option>English</option>
+            <option>Personal</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="note-content">Content *</label>
+          <textarea id="note-content" required placeholder="Write your note..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Note</button>
+      </form>
+    </div>
+
+    <div style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+      <input type="text" id="search-notes" placeholder="🔍 Search notes..." style="flex: 1;">
+      <select id="filter-notes" style="width: 150px;">
+        <option value="">All Categories</option>
+        <option value="pinned">📌 Pinned</option>
+        <option value="favorite">❤️ Favorites</option>
+      </select>
+    </div>
+
+    <div id="notes-list" style="display: grid; gap: var(--spacing-md);">
+      <div class="empty-state"><div class="empty-state-icon">📝</div><p>No notes yet</p></div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notifications.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('note-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        storage.addNote({
+          title: document.getElementById('note-title').value,
+          content: document.getElementById('note-content').value,
+          category: document.getElementById('note-category').value
+        });
+        notifier.success('Note saved!');
+        document.getElementById('note-form').reset();
+        displayNotes();
+      });
+
+      document.getElementById('search-notes').addEventListener('input', displayNotes);
+      document.getElementById('filter-notes').addEventListener('change', displayNotes);
+      displayNotes();
+    });
+
+    function displayNotes() {
+      let notes = storage.getNotes();
+      const searchTerm = document.getElementById('search-notes').value.toLowerCase();
+      const filter = document.getElementById('filter-notes').value;
+
+      if (searchTerm) {
+        notes = notes.filter(n => n.title.toLowerCase().includes(searchTerm) || n.content.toLowerCase().includes(searchTerm));
+      }
+      if (filter === 'pinned') notes = notes.filter(n => n.pinned);
+      if (filter === 'favorite') notes = notes.filter(n => n.favorite);
+
+      const container = document.getElementById('notes-list');
+      if (notes.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📝</div><p>No notes found</p></div>';
+        return;
+      }
+
+      container.innerHTML = notes.map(note => `
+        <div class="card">
+          <div class="flex-between" style="margin-bottom: var(--spacing-md);">
+            <div><h4>${note.title}</h4><p style="color: var(--text-secondary); font-size: 0.9rem;">${note.category}</p></div>
+            <div style="display: flex; gap: var(--spacing-sm);">
+              <button class="btn btn-icon btn-sm" onclick="togglePin(${note.id})" title="Pin">${note.pinned ? '📌' : '📍'}</button>
+              <button class="btn btn-icon btn-sm" onclick="toggleFavorite(${note.id})" title="Favorite">${note.favorite ? '❤️' : '🤍'}</button>
+              <button class="btn btn-icon btn-sm" onclick="deleteNote(${note.id})">🗑️</button>
+            </div>
+          </div>
+          <p>${note.content}</p>
+          <p style="color: var(--text-tertiary); font-size: 0.85rem; margin-top: var(--spacing-md);">${app.formatDate(note.createdAt)}</p>
+        </div>
+      `).join('');
+    }
+
+    function togglePin(id) {
+      const note = storage.getNoteById(id);
+      storage.updateNote(id, { pinned: !note.pinned });
+      displayNotes();
+    }
+
+    function toggleFavorite(id) {
+      const note = storage.getNoteById(id);
+      storage.updateNote(id, { favorite: !note.favorite });
+      displayNotes();
+    }
+
+    function deleteNote(id) {
+      storage.deleteNote(id);
+      notifier.success('Note deleted');
+      displayNotes();
+    }
+  </script>
+</body>
+</html>
